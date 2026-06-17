@@ -160,15 +160,6 @@ with st.sidebar:
                             uploaded_file
                         )
 
-                    # Preview data
-                    st.write(
-                        "Preview Data:"
-                    )
-
-                    st.dataframe(
-                        df.head()
-                    )
-
                     # =====================
                     # RENAME KOLOM
                     # =====================
@@ -210,15 +201,6 @@ with st.sidebar:
 
                     # Tambahkan batch TO
                     df["batch_to"] = batch_to
-
-                    # Debug kolom
-                    st.write(
-                        "Kolom setelah rename:"
-                    )
-
-                    st.write(
-                        df.columns.tolist()
-                    )
 
                     # =====================
                     # SIMPAN DATABASE
@@ -279,6 +261,16 @@ st.markdown(f"""
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}}
+
+table {{
+    border-collapse: collapse;
+    table-layout: fixed;
+}}
+
+th,
+td {{
+    white-space: nowrap;
 }}
 
 .main-title {{
@@ -410,6 +402,12 @@ if st.session_state.login_status:
     # pindahkan nama_siswa jadi kolom biasa
     tabel_final = tabel_final.reset_index()
 
+    # hapus index numerik bawaan
+    if "index" in tabel_final.columns:
+        tabel_final = tabel_final.drop(
+            columns=["index"]
+        )
+
     tabel_final.insert(
         0,
         "No",
@@ -443,7 +441,7 @@ if st.session_state.login_status:
             if isinstance(x, (int, float))
             and str(x) != ""
             else x
-        )
+            )
 
     styled_table = (
         tabel_final.style
@@ -461,7 +459,8 @@ if st.session_state.login_status:
                     ("color", "#FFFFFF"),
                     ("font-size", "15px"),
                     ("font-weight", "bold"),
-                    ("text-align", "center")
+                    ("text-align", "center"),
+                    ("white-space", "nowrap")
                 ]
             },
             {
@@ -489,13 +488,31 @@ if st.session_state.login_status:
                     ("color", "#FFFFFF"),
                     ("font-size", "14px"),
                     ("font-weight", "normal"),
-                    ("text-align", "center")
+                    ("text-align", "center"),
+                    ("white-space", "nowrap")
                 ]
             }
         ])
     )
 
-    st.write(
-        styled_table.hide(axis="index").to_html(),
+    html_table = (
+        styled_table
+        .hide(axis="index")
+        .to_html()
+    )
+
+    html_table = html_table.replace(
+        '<th colspan="1" class="col_heading level0 col1" >Nama Siswa</th>',
+        '<th colspan="1" class="col_heading level0 col1" style="width:180px;">Nama Siswa</th>'
+    )
+
+    st.markdown(
+        f"""
+        <div style="
+            overflow-x:auto;
+            width:100%;
+        ">
+            {html_table}
+        """,
         unsafe_allow_html=True
     )
