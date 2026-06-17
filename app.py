@@ -187,12 +187,17 @@ with st.sidebar:
                     # SIMPAN DATABASE
                     # =====================
 
+                    st.write(df.head())
+                    st.write(len(df))
+
                     df.to_sql(
                         "nilai_tryout",
                         engine,
                         if_exists="append",
                         index=False
                     )
+
+                    st.success("BERHASIL MASUK TO_SQL")
 
                     st.success(
                         f"Data {batch_to} berhasil diupload"
