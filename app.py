@@ -191,7 +191,7 @@ with st.sidebar:
                     st.write(len(df))
 
                     df.to_sql(
-                        "nilai_tryout",
+                        "NILAI_TRYOUT",
                         engine,
                         if_exists="append",
                         index=False
@@ -331,7 +331,7 @@ if st.session_state.login_status:
     data = pd.read_sql(
         """
         SELECT *
-        FROM nilai_tryout
+        FROM NILAI_TRYOUT
         """,
         engine
     )
