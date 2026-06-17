@@ -331,7 +331,7 @@ if st.session_state.login_status:
     data = pd.read_sql(
         """
         SELECT *
-        FROM NILAI_TRYOUT
+        FROM "NILAI_TRYOUT"
         """,
         engine
     )
