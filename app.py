@@ -1,7 +1,8 @@
 import streamlit as st
 import base64
 import pandas as pd
-import sqlite3
+import os
+from sqlalchemy import create_engine
 
 st.set_page_config(
     page_title="Monitoring Try Out",
@@ -31,36 +32,16 @@ bg_image = get_base64_image(
 )
 
 # =========================
-# DATABASE SQLITE
+# DATABASE SUPABASE
 # =========================
-conn = sqlite3.connect(
-    "database/database.db",
-    check_same_thread=False
+
+DATABASE_URL = os.getenv(
+    "SUPABASE_DATABASE_URL"
 )
 
-cursor = conn.cursor()
-
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS nilai_tryout (
-
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-    nama_siswa TEXT,
-
-    batch_to TEXT,
-
-    bilangan REAL,
-    aljabar REAL,
-    geometri REAL,
-    peluang REAL,
-
-    tekstual REAL,
-    inferensial REAL,
-    evaluasi REAL
+engine = create_engine(
+    DATABASE_URL
 )
-""")
-
-conn.commit()
 
 # =========================
 # SIDEBAR
@@ -208,12 +189,10 @@ with st.sidebar:
 
                     df.to_sql(
                         "nilai_tryout",
-                        conn,
+                        engine,
                         if_exists="append",
                         index=False
                     )
-
-                    conn.commit()
 
                     st.success(
                         f"Data {batch_to} berhasil diupload"
@@ -349,7 +328,7 @@ if st.session_state.login_status:
         SELECT *
         FROM nilai_tryout
         """,
-        conn
+        engine
     )
 
     mata_pelajaran = st.segmented_control(
