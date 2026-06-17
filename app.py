@@ -187,9 +187,6 @@ with st.sidebar:
                     # SIMPAN DATABASE
                     # =====================
 
-                    st.write(df.head())
-                    st.write(len(df))
-
                     df.to_sql(
                         "NILAI_TRYOUT",
                         engine,
