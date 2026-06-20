@@ -121,3 +121,4 @@ websockets==16.0
 SQLAlchemy==2.0.43
 psycopg2-binary==2.9.10
 kmodes==0.12.2
+plotly==5.24.1
