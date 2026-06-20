@@ -762,7 +762,7 @@ if (
 
         st.plotly_chart(
             fig_pie,
-            use_container_width=True
+            use_container_width=False
         )
 
     with col_kanan:
@@ -860,6 +860,8 @@ if (
                 xaxis_title=None,
                 yaxis_title=None,
                 showlegend=False,
+                height=420,
+                width=500,
                 height=500,
 
                 margin=dict(
@@ -894,6 +896,7 @@ if (
             )
 
             fig_kategori.update_yaxes(
+                automargin=True,
                 categoryorder="array",
                 categoryarray=[
                     "Sangat Kurang",
@@ -955,7 +958,7 @@ if (
                 xaxis_title=None,
                 yaxis_title=None,
                 showlegend=False,
-                height=500,
+                height=420,
                                 xaxis=dict(
                     tickfont=dict(
                         size=14,
