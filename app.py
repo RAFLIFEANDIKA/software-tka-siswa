@@ -861,11 +861,20 @@ if (
                 yaxis_title=None,
                 showlegend=False,
                 height=500,
+
+                margin=dict(
+                    l=100,
+                    r=20,
+                    t=60,
+                    b=40
+                ),
+
                 xaxis=dict(
                     tickfont=dict(
                         size=14,
                         color="white"
-                    )
+                    ),
+                    showgrid=False
                 ),
 
                 yaxis=dict(
