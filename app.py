@@ -862,7 +862,6 @@ if (
                 showlegend=False,
                 height=420,
                 width=500,
-                height=500,
 
                 margin=dict(
                     l=100,
