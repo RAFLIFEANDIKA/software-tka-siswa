@@ -961,7 +961,6 @@ if (
                 yaxis_title=None,
                 showlegend=False,
                 height=420,
-                width=500,
                 bargap=0.15,
 
                 margin=dict(
