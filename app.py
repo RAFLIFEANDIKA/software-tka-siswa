@@ -862,6 +862,7 @@ if (
                 showlegend=False,
                 height=420,
                 width=500,
+                bargap=0.15,
 
                 margin=dict(
                     l=100,
@@ -888,6 +889,7 @@ if (
 
             fig_kategori.update_traces(
                 textposition="auto",
+                width=0.7,
                 textfont=dict(
                     color="white",
                     size=14
@@ -958,7 +960,7 @@ if (
                 yaxis_title=None,
                 showlegend=False,
                 height=420,
-                                xaxis=dict(
+                xaxis=dict(
                     tickfont=dict(
                         size=14,
                         color="white"
