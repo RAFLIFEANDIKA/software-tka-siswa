@@ -889,7 +889,7 @@ if (
 
             fig_kategori.update_traces(
                 textposition="outside",
-                width=0.6,
+                width=0.7,
                 textfont=dict(
                     color="white",
                     size=14
@@ -988,7 +988,7 @@ if (
 
             fig_status.update_traces(
                 textposition="outside",
-                width=0.7,
+                width=0.45,
                 textfont=dict(
                     color="white",
                     size=14
