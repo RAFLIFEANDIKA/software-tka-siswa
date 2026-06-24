@@ -862,7 +862,7 @@ if (
                 showlegend=False,
                 height=420,
                 width=500,
-                bargap=0.15,
+                bargap=0.3,
 
                 margin=dict(
                     l=100,
@@ -888,7 +888,7 @@ if (
             )
 
             fig_kategori.update_traces(
-                textposition="auto",
+                textposition="outside",
                 textfont=dict(
                     color="white",
                     size=14
@@ -903,7 +903,14 @@ if (
                     "Kurang",
                     "Baik",
                     "Sangat Baik"
-                ]
+                ],
+                ticklabelposition="outside",
+                margin=dict(
+                    l=130,
+                    r=20,
+                    t=60,
+                    b=40
+                )
             )
 
             st.plotly_chart(
