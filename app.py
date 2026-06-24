@@ -860,9 +860,9 @@ if (
                 xaxis_title=None,
                 yaxis_title=None,
                 showlegend=False,
-                height=420,
+                height=550,
                 width=500,
-                bargap=0.3,
+                bargap=0.5,
 
                 margin=dict(
                     l=100,
@@ -889,6 +889,7 @@ if (
 
             fig_kategori.update_traces(
                 textposition="outside",
+                width=0.7,
                 textfont=dict(
                     color="white",
                     size=14
@@ -905,12 +906,6 @@ if (
                     "Sangat Baik"
                 ],
                 ticklabelposition="outside",
-                margin=dict(
-                    l=130,
-                    r=20,
-                    t=60,
-                    b=40
-                )
             )
 
             st.plotly_chart(
