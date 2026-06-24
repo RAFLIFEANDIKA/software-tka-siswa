@@ -864,13 +864,6 @@ if (
                 width=500,
                 bargap=0.15,
 
-                margin=dict(
-                    l=100,
-                    r=20,
-                    t=60,
-                    b=40
-                ),
-
                 xaxis=dict(
                     tickfont=dict(
                         size=14,
