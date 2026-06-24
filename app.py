@@ -988,7 +988,7 @@ if (
 
             fig_status.update_traces(
                 textposition="outside",
-                width=0.45,
+                width=0.6,
                 textfont=dict(
                     color="white",
                     size=14
