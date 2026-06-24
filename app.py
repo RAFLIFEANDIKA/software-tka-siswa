@@ -889,7 +889,6 @@ if (
 
             fig_kategori.update_traces(
                 textposition="auto",
-                width=0.7,
                 textfont=dict(
                     color="white",
                     size=14
