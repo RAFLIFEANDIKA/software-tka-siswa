@@ -961,14 +961,8 @@ if (
                 yaxis_title=None,
                 showlegend=False,
                 height=420,
+                width=500,
                 bargap=0.15,
-
-                margin=dict(
-                    l=100,
-                    r=20,
-                    t=60,
-                    b=40
-                ),
 
                 xaxis=dict(
                     tickfont=dict(
