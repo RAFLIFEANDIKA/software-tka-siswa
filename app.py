@@ -860,9 +860,9 @@ if (
                 xaxis_title=None,
                 yaxis_title=None,
                 showlegend=False,
-                height=550,
+                height=420,
                 width=500,
-                bargap=0.5,
+                bargap=0.15,
 
                 margin=dict(
                     l=100,
@@ -961,6 +961,16 @@ if (
                 yaxis_title=None,
                 showlegend=False,
                 height=420,
+                width=500,
+                bargap=0.15,
+
+                margin=dict(
+                    l=100,
+                    r=20,
+                    t=60,
+                    b=40
+                ),
+
                 xaxis=dict(
                     tickfont=dict(
                         size=14,
@@ -977,7 +987,12 @@ if (
             )
 
             fig_status.update_traces(
-                textposition="auto"
+                textposition="outside",
+                width=0.7,
+                textfont=dict(
+                    color="white",
+                    size=14
+                )
             )
 
             st.plotly_chart(
