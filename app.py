@@ -1498,7 +1498,7 @@ if (
     </style>
     """, unsafe_allow_html=True)
 
-    col_filter1, col_filter2, col_filter3 = st.columns([1,1,1])
+    col_filter1, col_filter2, col_filter3, col_filter4 = st.columns([1,1,1,1])
 
     with col_filter1:
 
@@ -1548,6 +1548,17 @@ if (
                 "Siap Tes TKA",
                 "Belum Siap Tes TKA"
             ]
+        )
+
+    with col_filter4:
+
+        daftar_batch = sorted(
+            data["batch_to"].unique().tolist()
+        )
+
+        filter_batch = st.selectbox(
+            "Batch TO",
+            ["Semua"] + daftar_batch
         )
 
     df_filter = df_kategori.copy()
