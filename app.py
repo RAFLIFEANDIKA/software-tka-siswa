@@ -1541,6 +1541,17 @@ if (
 
     with col_filter3:
 
+        daftar_batch = sorted(
+            data["batch_to"].unique().tolist()
+        )
+
+        filter_batch = st.selectbox(
+            "Batch TO",
+            ["Semua"] + daftar_batch
+        )
+
+    with col_filter4:
+
         filter_hasil = st.selectbox(
             "Kesimpulan Akhir",
             [
@@ -1550,16 +1561,6 @@ if (
             ]
         )
 
-    with col_filter4:
-
-        daftar_batch = sorted(
-            data["batch_to"].unique().tolist()
-        )
-
-        filter_batch = st.selectbox(
-            "Batch TO",
-            ["Semua"] + daftar_batch
-        )
 
     df_filter = df_kategori.copy()
 
@@ -1710,66 +1711,67 @@ if (
 
         return ""
 
-    styled_table = (
-        tabel_final.style
+    styled_table = tabel_final.style
 
-        .map(
+    # cek STATUS
+    if "STATUS" in tabel_final.columns.get_level_values(1):
+        styled_table = styled_table.map(
             warna_status,
             subset=pd.IndexSlice[:, pd.IndexSlice[:, "STATUS"]]
         )
 
-        .map(
+    # cek KATEGORI
+    if "KATEGORI" in tabel_final.columns.get_level_values(1):
+        styled_table = styled_table.map(
             warna_kategori,
             subset=pd.IndexSlice[:, pd.IndexSlice[:, "KATEGORI"]]
         )
 
-        .set_properties(**{
-            "text-align": "center",
-            "font-weight": "bold",
-            "color": "#FFFFFF"
-        })
-
-        .set_table_styles([
-            {
-                "selector": "th.col_heading",
-                "props": [
-                    ("background-color", "#1E293B"),
-                    ("color", "#FFFFFF"),
-                    ("font-size", "15px"),
-                    ("font-weight", "bold"),
-                    ("text-align", "center"),
-                    ("white-space", "nowrap")
-                ]
-            },
-            {
-                "selector": "th.index_name",
-                "props": [
-                    ("background-color", "transparent"),
-                    ("color", "#FFFFFF"),
-                    ("font-size", "14px"),
-                    ("font-weight", "bold")
-                ]
-            },
-            {
-                "selector": "th.row_heading",
-                "props": [
-                    ("background-color", "transparent"),
-                    ("color", "#FFFFFF"),
-                    ("font-size", "14px"),
-                    ("font-weight", "normal")
-                ]
-            },
-            {
-                "selector": "td",
-                "props": [
-                    ("font-size", "14px"),
-                    ("font-weight", "normal"),
-                    ("text-align", "center"),
-                    ("white-space", "nowrap")
-                ]
-            }
-        ])
-    )
+    # LANJUTKAN STYLING
+    styled_table = styled_table.set_properties(**{
+        "text-align": "center",
+        "font-weight": "bold",
+        "color": "#FFFFFF"
+    }).set_table_styles([
+        {
+            "selector": "th.col_heading",
+            "props": [
+                ("background-color", "#1E293B"),
+                ("color", "#FFFFFF"),
+                ("font-size", "15px"),
+                ("font-weight", "bold"),
+                ("text-align", "center"),
+                ("white-space", "nowrap")
+            ]
+        },
+        {
+            "selector": "th.index_name",
+            "props": [
+                ("background-color", "transparent"),
+                ("color", "#FFFFFF"),
+                ("font-size", "14px"),
+                ("font-weight", "bold")
+            ]
+        },
+        {
+            "selector": "th.row_heading",
+            "props": [
+                ("background-color", "transparent"),
+                ("color", "#FFFFFF"),
+                ("font-size", "14px"),
+                ("font-weight", "normal")
+            ]
+        },
+        {
+            "selector": "td",
+            "props": [
+                ("font-size", "14px"),
+                ("font-weight", "normal"),
+                ("text-align", "center"),
+                ("white-space", "nowrap")
+            ]
+        }
+    ])   
 
     html_table = (
         styled_table
