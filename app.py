@@ -1587,6 +1587,29 @@ if (
             == filter_sub
         ]
 
+    if filter_batch != "Semua":
+
+        kolom_dipilih = []
+
+        for col in tabel_final.columns:
+
+            # kolom biasa
+            if not isinstance(col, tuple):
+                kolom_dipilih.append(col)
+                continue
+
+            level0, level1 = col
+
+            # No dan Nama
+            if level0 in ["No", "Nama Siswa"]:
+                kolom_dipilih.append(col)
+
+            # hanya batch yg dipilih
+            elif level1 == filter_batch:
+                kolom_dipilih.append(col)
+
+        tabel_final = tabel_final[kolom_dipilih]
+
     tabel_final[("HASIL AKHIR", "")] = (
         df_kategori
         .set_index("nama_siswa")
